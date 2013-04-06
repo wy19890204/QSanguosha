@@ -5,10 +5,8 @@ return {
 	["New3v3Card"] = "新3v3",
 	["#zhugejin"] = "联盟的维系者",
 	["zhugejin"] = "诸葛瑾",
-	["illustrator:zhugejin"] = "LiuHeng",
-	["cv:zhugejin"] = "风叹息",
-	["designer:zhugejin"] = "韩旭",
-	["~zhugejin"] = "君臣不相负，来世复君臣。",
+	
+	
 	["huanshi"] = "缓释",
 	[":huanshi"] = "在一名己方角色的判定牌生效前，你可以打出一张牌代替之。\
 (<b>身份局</b>：在一名角色的判定牌生效前，你可以令其选择是否由你打出一张牌代替之。)",
@@ -26,4 +24,5 @@ return {
 	["mingzhe"] = "明哲",
 	[":mingzhe"] = "你的回合外，当你因使用、打出或弃置而失去一张红色牌时，你可以摸一张牌。",
 	["$mingzhe"] = "明以洞察，哲以保身。",
+	["~zhugejin"] = "君臣不相负，来世复君臣。",
 }

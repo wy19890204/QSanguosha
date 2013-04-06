@@ -44,7 +44,7 @@ return {
 	["show"] = "展示",
 	["online"] = "在线",
 	["offline"] = "离线",
-	["robot"] = "电脑",
+	["robot"] = "",
 	["trust"] = "托管",
 	["cheat"] = "作弊",
 	["change"] = "变身",
@@ -171,7 +171,7 @@ return {
 	["#TrickDirection"] = "%from 选择了 %arg 作为锦囊的顺序",
 	["custom"] = "自定义模式",
 	["UnknowNick"] = "无称号",
-	["DefaultIllustrator"] = "KayaK",
+	["DefaultIllustrator"] = "官方",
 	
 	["@waked"] = "觉醒",
 }

@@ -45,9 +45,7 @@ return {
 	
 	["#nos_handang"] = "石城侯",
 	["nos_handang"] = "老韩当",
-	["designer:nos_handang"] = "ByArt",
-	["illustrator:nos_handang"] = "DH",
-	["cv:nos_handang"] = "风叹息",
+	
 	["nosgongqi"] = "弓骑",
 	[":nosgongqi"] = "你可以将一张装备牌当【杀】使用或打出；你以此法使用【杀】时无距离限制。",
 	["nosjiefan"] = "解烦",
@@ -58,6 +56,34 @@ return {
 	["#NosJiefanNull1"] = "%from 已经脱离了濒死状态，解烦效果二无法执行。",
 	["#NosJiefanNull2"] = "%from 已经死透了，解烦效果二无法执行。",
 	["#NosJiefanNull3"] = "因为当前为 %from 的回合， %to 不处于濒死状态，解烦效果二无法执行。",
-
+	
+	["$nosgongqi"] = "弓马齐备，远射近突！",
+	["$nosjiefan1"] = "解烦军至，此危自解！",
+	["$nosjiefan2"] = "吾主莫慌，韩义公在此！",
+	["$JiefanAnimate1"] = "解烦军至，此危自解！",
+	["$JiefanAnimate2"] = "吾主莫慌，韩义公在此！",
+	["~noshandang"] = "我主堪忧，我主堪忧啊……",
+	
+      ["$nosenyuan1"] = "得人恩果千年记。",
+	["$nosenyuan2"] = "滴水之恩，涌泉以报。",
+	["$nosenyuan3"] = "谁敢得罪我！",
+	["$nosenyuan4"] = "睚眦之怨，无不报复。",
+	["$nosxuanhuo1"] = "重用许靖，以眩远近。",
+	["$nosxuanhuo2"] = "给你的，十倍奉还给我！",
+	["~nosfazheng"] = "蜀翼既折，蜀汉哀矣……",
+	
+	["$noswuyan1"] = "唉，一切尽在不言中。",
+	["$noswuyan2"] = "嘘，言多必失啊……",
+	["$nosjujian1"] = "将军岂愿抓牌乎？",
+	["$nosjujian2"] = "我看好你！",
+	["~nosxushu"] = "娘……孩儿不孝……向您……请罪……",
+	
+	["$nosxuanfeng1"] = "伤敌于千里之外！",
+	["$nosxuanfeng2"] = "索命于须臾之间！",
+	["~noslingtong"] = "大丈夫……不惧死亡……",
+ 
+	["$nosshangshi1"] = "自损八百，可伤敌一千。",
+	["$nosshangshi2"] = "无情者伤人，有情者自伤。",
+	["~noszhangchunhua"] = "怎能如此对我",
 }
 
