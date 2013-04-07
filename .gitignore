@@ -38,3 +38,4 @@ tags
 .cproject
 .project
 .settings
+lua/MyAI/test.db
