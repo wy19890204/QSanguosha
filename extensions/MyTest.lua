@@ -765,12 +765,6 @@ extension = sgs.Package("MyTest")
 test1 = sgs.General(extension, "test1", "shu")
 
 
---连接数据库
-require "sqlite3"
-db = sqlite3.open("./lua/MyAI/test.db")
-db:exec("CREATE TABLE userLoin (username text,general text);")
-
-
 --测试play的作用
 skill_test1 = sgs.CreateTriggerSkill {
 	name = "skill_test1",
