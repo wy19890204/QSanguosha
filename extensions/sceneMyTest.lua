@@ -758,24 +758,18 @@ removeAt
 at
 ]]
 
+dofile("./lua/MyAI/MyAI.lua")
 
-module("extensions.MyTest", package.seeall)
-extension = sgs.Package("MyTest")
+module("extensions.sceneMyTest", package.seeall)
+extension = sgs.Package("sceneMyTest")
 
 test1 = sgs.General(extension, "test1", "shu")
 
-
---测试play的作用
-skill_test1 = sgs.CreateTriggerSkill {
-	name = "skill_test1",
-	events = {sgs.EventPhaseStart,sgs.TurnStart,sgs.GameStart,sgs.ChoiceMade},
-	
+--新建场景用于测试
+sceneMyTest = sgs.CreateTriggerSkill {
+	name = "#sceneMyTest",
+	events = {sgs.GameStart},
 	on_trigger = function(self, event, player, data)
-		local room = player:getRoom()	
-
-		if event==sgs.ChoiceMade then
-			player:speak(data:toString())
-		end
 		--把登陆的玩家信息记录到数据库
 		if event==sgs.GameStart then
 			if player:getAI() then return end
@@ -786,6 +780,21 @@ skill_test1 = sgs.CreateTriggerSkill {
 			local query=db:first_row(sql2)
 			player:speak("用户:"..query.username.."--->"..query.general)
 		end
+	end
+	}
+
+--测试play的作用
+skill_test1 = sgs.CreateTriggerSkill {
+	name = "skill_test1",
+	events = {sgs.EventPhaseStart,sgs.TurnStart,sgs.ChoiceMade},
+	
+	on_trigger = function(self, event, player, data)
+		local room = player:getRoom()	
+
+		if event==sgs.ChoiceMade then
+			player:speak(data:toString())
+		end
+		
 	
 		--武将选择
 		--room:askForGeneral(player,"pangtong+zhugeliang")
@@ -853,8 +862,14 @@ skill_test1 = sgs.CreateTriggerSkill {
 
 test1:addSkill(skill_test1)
 
+if not sgs.Sanguosha:getSkill("#sceneMyTest") then
+	local skillList=sgs.SkillList()
+	skillList:append(sceneMyTest)
+	sgs.Sanguosha:addSkills(skillList)
+end
+
 sgs.LoadTranslationTable{
-	["MyTest"] = "技能测试",
+	["sceneMyTest"] = "My测试包",
 
 	["#test1"] = "测试武将",
 	["test1"] = "测试武将",
