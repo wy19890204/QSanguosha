@@ -182,8 +182,11 @@ return {
 	["$lianpo"] = "敌军已乱，乘胜追击。",
 	["~shensimayi"] = "我已谋划至此，奈何……",
 	
-	["$YeyanAnimate"] = "anim=skill/yeyan",
+	["$YeyanAnimate1"] = "anim=skill/yeyan",
+	["$YeyanAnimate2"] = "anim=skill/yeyan",
+	["$YeyanAnimate3"] = "anim=skill/yeyan",
 	["$GuixinAnimate"] = "anim=skill/guixin",
-	["$ShenfenAnimate"] = "anim=skill/shenfen",
+	["$ShenfenAnimate1"] = "anim=skill/shenfen",
+	["$ShenfenAnimate2"] = "anim=skill/shenfen",
 	["$BaiyinAnimate"] = "anim=skill/baiyin",
 }

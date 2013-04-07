@@ -271,7 +271,7 @@ return {
 	["$xunzhi1"] = "丞相，计若不成，维亦无悔！",
 	["$xunzhi2"] = "蜀汉英烈，忠魂佑我！",
 	["~jiangboyue"] = "吾计不成，乃天命也！",
-	["$XunzhiAnimate"] = "anim=skill/xunzhiwen",
+	["$XunzhiAnimate1"] = "anim=skill/xunzhiwen",
 	["$XunzhiAnimate2"] = "anim=skill/xunzhiwu",
 	
 	["$dongcha1"] = "破善攻者，须先知其所守！",
