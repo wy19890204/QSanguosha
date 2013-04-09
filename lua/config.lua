@@ -30,7 +30,9 @@ config = {
 		"BGMDIY",
 		"Yitian",
 		"Wisdom",
-		"Test"
+		"Test",
+		"Darksoul"
+		
 	},
 
 	color_wei = "#547998",
