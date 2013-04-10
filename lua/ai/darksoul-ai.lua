@@ -779,110 +779,37 @@ last
 removeAt
 at
 ]]
+sgs.ai_use_value.Fu =6.3
+sgs.ai_keep_value.Fu =8
 
-fu_view_Pattern={}
+--符
+function SmartAI:useCardFu(card, use)
+    if self.player:isWounded() then
+		use.card=card
+		if use.to then use.to:append(self.player) end
+		return
+	end
+end
 
-module("extensions.scenedraksoule", package.seeall)
-extension = sgs.Package("scenedraksoule")
-
-function sgs.getCardBypattern(player,pattern)
-	local flag=false
-	for _,cd in sgs.qlist(player:getHandcards()) do
-		if(cd:isKindOf(pattern)) then
-			flag=true
-			break
+sgs.ai_skill_choice["fu"]=function(self, choices, data)
+	local choice_table = choices:split("+")
+	for _,v in ipairs(choice_table) do
+		if v=="peach" then
+			return "peach"
+		elseif v=="fire_slash" then
+			return "fire_slash"
 		end
 	end
-	return flag
 end
 
-
-scenedraksoule = sgs.CreateTriggerSkill {
-	name = "#scenedraksoule",
-	events = {sgs.GameStart},
-	on_trigger = function(self, event, player, data)
-		local room=player:getRoom()
-		room:acquireSkill(player,"#rule_fu")
-		room:acquireSkill(player,"fu_view")
-	end
-}
-
-
-fu_view=sgs.CreateViewAsSkill{
-name="fu_view",
-n=1,
-view_filter=function(self, selected, to_select)
-	return to_select:isKindOf("Fu") and #selected<1
-end,
-view_as=function(self, cards)
-	if #cards~=1 then return nil end
-	local fu_view_card=sgs.Sanguosha:cloneCard(fu_view_Pattern[1],cards[1]:getSuit(),cards[1]:getNumber())
-	fu_view_card:addSubcard(cards[1])
-	fu_view_card:setSkillName(self:objectName())
-	return a_luawy_card
-end,
-enabled_at_play=function()
-	return false
-end,
-enabled_at_response=function(self, player, pattern)
-	return pattern == "jink" or pattern == "slash" or pattern=="peach"
-end
-}
-
-
---符的响应
-rule_fu = sgs.CreateTriggerSkill {
-	name = "#rule_fu",
-	events = {sgs.Dying,sgs.CardAsked},
-	view_as_skill=fu_view,
-	on_trigger = function(self, event, player, data)
-		local room = player:getRoom()	
-		if not sgs.getCardBypattern(player,"Fu") then return end
-		if event==sgs.Dying then
-			local dying=data:toDying()
-				fu_view_Pattern[1]="peach"	
-				player:speak(fu_view_Pattern[1])
-			-- local card=room:askForCard(player,"Fu","@fu:"..dying.who:objectName(),data,sgs.Card_MethodUse)
-			-- if card then 
-				-- local peach=sgs.Sanguosha:cloneCard("peach",card:getSuit(),card:getNumber())
-				-- peach:addSubcard(card)
-				-- local use= sgs.CardUseStruct()
-				-- use.from=player
-				-- use.to:append(dying.who)
-				-- use.card=peach
-				-- room:useCard(use)
-			-- end		
-		end
-		
-		if event==sgs.CardAsked then
-			local pattern=data:toString()
-			if pattern=="slash" then pattern="fire_slash" end
-			fu_view_Pattern[1]=pattern	
+sgs.ai_view_as.fu_view = function(card, player, card_place)
+	local suit = card:getSuitString()
+	local number = card:getNumberString()
+	local card_id = card:getEffectiveId()
+	if card_place ~= sgs.Player_PlaceEquip then
+		if card:isKindOf("Fu") then
+			return (fu_view_Pattern[1]..":fu[%s:%s]=%d"):format(suit, number, card_id)
 		end
 	end
-}
-	
-if not sgs.Sanguosha:getSkill("#scenedraksoule") then
-	local skillList=sgs.SkillList()
-	skillList:append(scenedraksoule)
-	sgs.Sanguosha:addSkills(skillList)
 end
 
-if not sgs.Sanguosha:getSkill("#rule_fu") then
-	local skillList=sgs.SkillList()
-	skillList:append(rule_fu)
-	sgs.Sanguosha:addSkills(skillList)
-end
-
-if not sgs.Sanguosha:getSkill("fu_view") then
-	local skillList=sgs.SkillList()
-	skillList:append(fu_view)
-	sgs.Sanguosha:addSkills(skillList)
-end
-
-sgs.LoadTranslationTable{
-	["scenedraksoule"] = "暗魂包",
-	
-	["@fu"]="%src进入濒死状态,请打一张【符】!",
-	["fu_view"]="符"
-}

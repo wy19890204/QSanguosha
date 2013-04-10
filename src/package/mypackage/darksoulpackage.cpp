@@ -32,11 +32,18 @@ bool Fu::targetsFeasible(const QList<const Player *> &targets, const Player *) c
 
 bool Fu::targetFilter(const QList<const Player *> &targets, const Player *to_select, const Player *Self) const{
 
+
+
     if(targets.length()==1&&targets.at(0)->objectName()==Self->objectName()){
         return false;
     }
 
     Slash *slash=new Slash(this->getSuit(),this->getNumber());
+
+    if(to_select->objectName()!=Self->objectName()&&!slash->isAvailable(Self)){
+        return false;
+    }
+
     int slash_targets = 1 + Sanguosha->correctCardTarget(TargetModSkill::ExtraTarget, Self,slash );
     bool distance_limit = ((1 + Sanguosha->correctCardTarget(TargetModSkill::DistanceLimit, Self, slash)) < 500);
     if (Self->hasFlag("slashNoDistanceLimit"))
