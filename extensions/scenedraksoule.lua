@@ -780,11 +780,12 @@ removeAt
 at
 ]]
 
-fu_view_Pattern={}
+
 
 module("extensions.scenedraksoule", package.seeall)
 extension = sgs.Package("scenedraksoule")
 
+--查看手牌中是否有指定的牌
 function sgs.getCardBypattern(player,pattern)
 	local flag=false
 	for _,cd in sgs.qlist(player:getHandcards()) do
@@ -807,6 +808,7 @@ scenedraksoule = sgs.CreateTriggerSkill {
 	end
 }
 
+sgs.fu_view_Pattern={}
 
 fu_view=sgs.CreateViewAsSkill{
 name="fu_view",
@@ -816,7 +818,7 @@ view_filter=function(self, selected, to_select)
 end,
 view_as=function(self, cards)
 	if #cards~=1 then return nil end
-	local fu_view_card=sgs.Sanguosha:cloneCard(fu_view_Pattern[1],cards[1]:getSuit(),cards[1]:getNumber())
+	local fu_view_card=sgs.Sanguosha:cloneCard(sgs.fu_view_Pattern[1],cards[1]:getSuit(),cards[1]:getNumber())
 	fu_view_card:addSubcard(cards[1])
 	fu_view_card:setSkillName(self:objectName())
 	return a_luawy_card
@@ -840,8 +842,7 @@ rule_fu = sgs.CreateTriggerSkill {
 		if not sgs.getCardBypattern(player,"Fu") then return end
 		if event==sgs.Dying then
 			local dying=data:toDying()
-				fu_view_Pattern[1]="peach"	
-				player:speak(fu_view_Pattern[1])
+				sgs.fu_view_Pattern[1]="peach"	
 			-- local card=room:askForCard(player,"Fu","@fu:"..dying.who:objectName(),data,sgs.Card_MethodUse)
 			-- if card then 
 				-- local peach=sgs.Sanguosha:cloneCard("peach",card:getSuit(),card:getNumber())
@@ -857,7 +858,7 @@ rule_fu = sgs.CreateTriggerSkill {
 		if event==sgs.CardAsked then
 			local pattern=data:toString()
 			if pattern=="slash" then pattern="fire_slash" end
-			fu_view_Pattern[1]=pattern	
+			sgs.fu_view_Pattern[1]=pattern	
 		end
 	end
 }

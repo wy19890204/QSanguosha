@@ -808,7 +808,7 @@ sgs.ai_view_as.fu_view = function(card, player, card_place)
 	local card_id = card:getEffectiveId()
 	if card_place ~= sgs.Player_PlaceEquip then
 		if card:isKindOf("Fu") then
-			return (fu_view_Pattern[1]..":fu[%s:%s]=%d"):format(suit, number, card_id)
+			return (sgs.fu_view_Pattern[1]..":fu[%s:%s]=%d"):format(suit, number, card_id)
 		end
 	end
 end
