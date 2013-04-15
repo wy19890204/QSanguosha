@@ -1,5 +1,5 @@
 {
-"photoMainFrame": "image/compact/photo-back.png",
+"photoMainFrame": "image/full/compact/photo-back.png",
 "photoFaceTurnedMask": ["image/generals/small/faceturned.png",[12, 17, 119, 60]],
 "photoBlankGeneral": "image/generals/small/blank.png",
 "photoChain": ["image/system/chain.png",[0, 0, 131, 19]],
@@ -15,17 +15,50 @@
 "photoFocusFrame2": "image/compact/frame/sos.png",
 "photoFrameWhenSelected": "image/compact/frame/photoSelected.png",
 
-"playerGeneralIcon-default-1": ["image/generals/avatar/%1.png",[28, 58, 220, 111], [119, 60]],
-"playerGeneralIcon-default-6": ["image/generals/avatar/%1.png",[55, 58, 220, 111], [119, 60]],  //primary avatar for photo
+"playerGeneralIcon-default-1": ["image/generals/full/%1.png",[0, 0, 250, 292], [125, 146]],
+"playerGeneralIcon-default-4": ["image/generals/full/%1.png",[62, 0, 125, 292], [62, 146]], //secondary avatar for photo
+"playerGeneralIcon-default-6": ["image/generals/full/%1.png",[62, 0, 250, 292], [125, 146]],  //primary avatar for photo
 
-"generalCircleMask-0": ["image/generals/double-general/circle-photo-mask-compact.png", [78, 12, 41, 36]],
 
-"playerGeneralIcon-anjiang-1": "image/compact/generals/small/anjiang.png", 
-"playerGeneralIcon-yanliangwenchou-1": "image/compact/generals/small/yanliangwenchou.png",
-"playerGeneralIcon-erzhang-1": "image/compact/generals/small/erzhang.png",
-"playerGeneralIcon-guanxingzhangbao-1": "image/compact/generals/small/guanxingzhangbao.png",
-"playerGeneralIcon-anjiang-6": "image/compact/generals/small/anjiang.png", 
-"playerGeneralIcon-yanliangwenchou-6": "image/compact/generals/small/yanliangwenchou.png",
-"playerGeneralIcon-erzhang-6": "image/compact/generals/small/erzhang.png",
-"playerGeneralIcon-guanxingzhangbao-6": "image/compact/generals/small/guanxingzhangbao.png"
+"generalCircleImage-0": "image/full/double-general/circle-photo-compact.png",
+"generalCircleMask-0": "image/full/double-general/circle-photo-mask-compact.png",
+
+"playerGeneralIcon-anjiang-4": ["image/full/small/anjiang.png", [0, 0, 125, 292], [62, 146]],
+"playerGeneralIcon-anjiang-6": ["image/full/small/anjiang.png", [0, 0, 250, 292], [125, 146]],
+"playerGeneralIcon-yanliangwenchou-4": ["image/full/small/yanliangwenchou.png", [0, 0, 125, 292], [62, 146]],
+"playerGeneralIcon-yanliangwenchou-6": ["image/full/small/yanliangwenchou.png", [0, 0, 250, 292], [125, 146]],
+"playerGeneralIcon-erzhang-4": ["image/full/small/erzhang.png", [0, 0, 125, 292], [62, 146]],
+"playerGeneralIcon-erzhang-6": ["image/full/small/erzhang.png", [0, 0, 250, 292], [125, 146]],
+"playerGeneralIcon-guanxingzhangbao-4": ["image/full/small/guanxingzhangbao.png", [0, 0, 125, 292], [62, 146]],
+"playerGeneralIcon-guanxingzhangbao-6": ["image/full/small/guanxingzhangbao.png", [0, 0, 250, 292], [125, 146]],
+
+// equips
+"photoEquip-Axe": "image/full/bar/compact/sword.png",
+"photoEquip-Blade": "image/full/bar/compact/sword.png",
+"photoEquip-ChiTu": "image/full/bar/compact/horse.png",
+"photoEquip-Crossbow": "image/full/bar/compact/sword.png",
+"photoEquip-DaYuan": "image/full/bar/compact/horse.png",
+"photoEquip-DiLu": "image/full/bar/compact/horse.png",
+"photoEquip-DoubleSword": "image/full/bar/compact/sword.png",
+"photoEquip-EightDiagram": "image/full/bar/compact/shield.png",
+"photoEquip-Fan": "image/full/bar/compact/sword.png",
+"photoEquip-GaleShell": "image/full/bar/compact/shield.png",
+"photoEquip-GudingBlade": "image/full/bar/compact/sword.png",
+"photoEquip-Halberd": "image/full/bar/compact/sword.png",
+"photoEquip-HuaLiu": "image/full/bar/compact/horse.png",
+"photoEquip-IceSword": "image/full/bar/compact/sword.png",
+"photoEquip-JueYing": "image/full/bar/compact/horse.png",
+"photoEquip-KylinBow": "image/full/bar/compact/sword.png",
+"photoEquip-Monkey": "image/full/bar/compact/horse.png",
+"photoEquip-MoonSpear": "image/full/bar/compact/sword.png",
+"photoEquip-QinggangSword": "image/full/bar/compact/sword.png",
+"photoEquip-RenwangShield": "image/full/bar/compact/shield.png",
+"photoEquip-SilverLion": "image/full/bar/compact/shield.png",
+"photoEquip-SPMoonSpear": "image/full/bar/compact/sword.png",
+"photoEquip-Spear": "image/full/bar/compact/sword.png",
+"photoEquip-Vine": "image/full/bar/compact/shield.png",
+"photoEquip-YitianSword": "image/full/bar/compact/sword.png",
+"photoEquip-YxSword": "image/full/bar/compact/sword.png",
+"photoEquip-ZhuaHuangFeiDian": "image/full/bar/compact/horse.png",
+"photoEquip-ZiXing": "image/full/bar/compact/horse.png"
 }
