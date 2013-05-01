@@ -34,14 +34,14 @@ end
 
 scenemelee = sgs.CreateTriggerSkill{
 	name = "#scenemelee",
-	events = {sgs.TurnStart, sgs.Death, sgs.GameOverJudge},
+	events = {sgs.GameStart, sgs.Death},
 	--priority = 1,
 
 	on_trigger = function(self, event, player, data)
 		local room = player:getRoom()
 		local game_mode = string.lower(room:getMode())
 		
-		if event == sgs.TurnStart and room:getTag("MeleeGame"):toString() == "" and game_mode:find("[0-9][0-9]p[dz]?$") and game_mode > "03p" and not sgs.GetConfig("EnableHegemony", false) then
+		if event == sgs.GameStart and room:getTag("MeleeGame"):toString() == "" and game_mode:find("[0-9][0-9]p[dz]?$") and game_mode > "03p" and not sgs.GetConfig("EnableHegemony", false) then
 			local melee_mode = room:askForChoice(room:getOwner(), "scenemelee", "cancel+freeforall+melee")
 			room:setTag("MeleeGame",sgs.QVariant(melee_mode))
 			if melee_mode == "cancel" then return false end
@@ -86,7 +86,7 @@ scenemelee = sgs.CreateTriggerSkill{
 			room:updateStateItem()
 		end
 
-		if event == sgs.Death or event == sgs.GameOverJudge then
+		if event == sgs.Death then
 			local melee_mode = room:getTag("MeleeGame"):toString()
 			if melee_mode == "cancel" then return false end			
 

@@ -803,12 +803,14 @@ scenedraksoule = sgs.CreateTriggerSkill {
 	events = {sgs.GameStart},
 	on_trigger = function(self, event, player, data)
 		local room=player:getRoom()
-		room:acquireSkill(player,"#rule_fu")
-		room:acquireSkill(player,"fu_view")
+		room:acquireSkill(player,"#rule_fu")--符
+		room:acquireSkill(player,"fu_view")--符(视为)
+		room:acquireSkill(player,"#define_ph")--自定义阶段
 	end
 }
 
-sgs.fu_view_Pattern={}
+--符视为杀,闪,桃的技能
+sgs.fu_view_Pattern={"",jink=1,fire_slash=2,peach=3}
 
 fu_view=sgs.CreateViewAsSkill{
 name="fu_view",
@@ -818,10 +820,12 @@ view_filter=function(self, selected, to_select)
 end,
 view_as=function(self, cards)
 	if #cards~=1 then return nil end
-	local fu_view_card=sgs.Sanguosha:cloneCard(sgs.fu_view_Pattern[1],cards[1]:getSuit(),cards[1]:getNumber())
+	local pattern={"jink","fire_slash","peach"}
+	local str=pattern[sgs.Self:getMark("fu_pattern")]
+	local fu_view_card=sgs.Sanguosha:cloneCard(str,cards[1]:getSuit(),cards[1]:getNumber())
 	fu_view_card:addSubcard(cards[1])
 	fu_view_card:setSkillName(self:objectName())
-	return a_luawy_card
+	return fu_view_card
 end,
 enabled_at_play=function()
 	return false
@@ -839,26 +843,47 @@ rule_fu = sgs.CreateTriggerSkill {
 	view_as_skill=fu_view,
 	on_trigger = function(self, event, player, data)
 		local room = player:getRoom()	
-		if not sgs.getCardBypattern(player,"Fu") then return end
+		local pattern=""
+		local x=0
+		--if not sgs.getCardBypattern(player,"Fu") then return end
 		if event==sgs.Dying then
 			local dying=data:toDying()
-				sgs.fu_view_Pattern[1]="peach"	
-			-- local card=room:askForCard(player,"Fu","@fu:"..dying.who:objectName(),data,sgs.Card_MethodUse)
-			-- if card then 
-				-- local peach=sgs.Sanguosha:cloneCard("peach",card:getSuit(),card:getNumber())
-				-- peach:addSubcard(card)
-				-- local use= sgs.CardUseStruct()
-				-- use.from=player
-				-- use.to:append(dying.who)
-				-- use.card=peach
-				-- room:useCard(use)
-			-- end		
+			sgs.fu_view_Pattern[1]="peach"	
+			pattern="peach"
 		end
-		
 		if event==sgs.CardAsked then
-			local pattern=data:toString()
+			pattern=data:toString()
 			if pattern=="slash" then pattern="fire_slash" end
 			sgs.fu_view_Pattern[1]=pattern	
+		end
+		x=sgs.fu_view_Pattern[pattern]
+		room:setPlayerMark(player,"fu_pattern",x)
+
+	end
+}
+
+--自定义事件
+define_ph = sgs.CreateTriggerSkill {
+	name = "#define_ph",
+	events = {sgs.EventPhaseStart,sgs.Death},
+	on_trigger = function(self, event, player, data)
+		local room = player:getRoom()	
+		if event==sgs.Death then
+			if room:getTag("giveup"):toBool() then return end
+			local death=data:toDeath()
+			local owner=room:getOwner()
+			if not player:objectName()==owner:objectName() then return end
+			if death.who:objectName()==owner:objectName() and room:askForSkillInvoke(owner,"giveup") then
+				room:setTag("giveup",sgs.QVariant(true))
+				for _,pl in sgs.qlist(room:getAlivePlayers()) do
+					if pl:getRole()==owner:getRole() then
+						room:killPlayer(pl)		
+					end
+				end
+			end
+		end
+		if event==sgs.EventPhaseStart then 
+			player:speak(player:getPhaseString())
 		end
 	end
 }
@@ -881,9 +906,16 @@ if not sgs.Sanguosha:getSkill("fu_view") then
 	sgs.Sanguosha:addSkills(skillList)
 end
 
+if not sgs.Sanguosha:getSkill("#define_ph") then
+	local skillList=sgs.SkillList()
+	skillList:append(define_ph)
+	sgs.Sanguosha:addSkills(skillList)
+end
+
 sgs.LoadTranslationTable{
 	["scenedraksoule"] = "暗魂包",
 	
 	["@fu"]="%src进入濒死状态,请打一张【符】!",
-	["fu_view"]="符"
+	["fu_view"]="符",
+	["giveup"]="确认要认输吗?"
 }
